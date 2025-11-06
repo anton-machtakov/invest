@@ -1,27 +1,47 @@
 <!doctype html>
 <html>
 	<head>
+		<!-- Не трогать -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+		<!-- Заголовок презентации -->
 		<title>Инвестиции</title>
 
+		<!-- Стили reveal.js. Не трогать -->
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/sky.css" id="theme">
-
-		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+		<!-- Выбрать тему из каталога dist/theme -->
+		<link rel="stylesheet" href="dist/theme/sky.css" id="theme">
+		
+		<!-- Обновили заголовок -->
+		<style>
+			#ror_ditz {
+				font-size: 75%;
+			}
+			h3 {
+				color: white !important;
+				border: 1px dotted red;
+				padding: 5px;
+				background-color: brown;
+				border-radius: 10px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
+				<!-- Добавили заголовок  -->
+				<!-- Сделали заголовок по центру, так приятнее  -->
 				<section class="center">
 					<h1>Инвестиции</h1>
 				</section>
 				<section class="center">
 					<h2>Определения</h2>
 				</section>
+				<!-- Добавили слайды из файлов на markdown  -->
 				<section data-markdown="markdown/invest.md"></section>
 				<section data-markdown="markdown/trading.md"></section>
 				<section data-markdown="markdown/market.md"></section>
@@ -40,39 +60,43 @@
 					<h2>Доходность</h2>
 				</section>
 				<section>
-				<section data-markdown style="font-size: 75%;">
-					<script type="text/template">
-### Доходность по методу Дитца
-- $R$ - доходность портфеля в процентах (rate of return)
-- $S_e$ - стоимость портфеля на конец периода (end of the period)
-- $S_b$ - стоимость портфеля на начало периода (begin of the period)
-- $S_a$ - пополнения счета (account refill)
-- $S_w$ - снятия со счета (withdrawal from the account)
-- $W_t$ - временной весовой коэффициент, который применяет к каждому денежному потоку в портфеле (time)
-- $T$ - длительность отчетного периода в днях, за которых считается доходность
-- $t$ - количество дней, которое прошло с момента начала инвестирования
-					</script>
+				<!-- Добавили слайд на markdown прямо в коде страницы-->
+				<!-- Так удобнее добавлять многостраничные слайды -->
+					<section data-markdown id="ror_ditz">
+						<script type="text/template">
+							### Доходность по методу Дитца
+							- $R$ - доходность портфеля в процентах (rate of return)
+							- $S_e$ - стоимость портфеля на конец периода (end of the period)
+							- $S_b$ - стоимость портфеля на начало периода (begin of the period)
+							- $S_a$ - пополнения счета (account refill)
+							- $S_w$ - снятия со счета (withdrawal from the account)
+							- $W_t$ - временной весовой коэффициент, который применяет к каждому денежному потоку в портфеле (time)
+							- $T$ - длительность отчетного периода в днях, за которых считается доходность
+							- $t$ - количество дней, которое прошло с момента начала инвестирования
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Доходность по методу Дитца
+							$$
+							W_t = \dfrac{T-t}{T}
+							$$
+							
+							$$
+							R = \dfrac{S_e-S_b-\sum{S_a}+\sum{S_w}}{S_b+\sum{(S_aW_t)}-\sum(S_wW_t)}
+							$$
+						</script>
+					</section>
 				</section>
-				<section data-markdown>
-					<script type="text/template">
-### Доходность по методу Дитца
-$$
-W_t = \dfrac{T-t}{T}
-$$
-
-$$
-R = \dfrac{S_e-S_b-\sum{S_a}+\sum{S_w}}{S_b+\sum{(S_aW_t)}-\sum(S_wW_t)}
-$$
-					</script>
-				</section>
-				</section>
+				<!-- Добавляем программу через айфрейм -->
 				<section data-fullscreen data-menu-title="Программа доходности по Дитцу">
 					<iframe data-src="html/ror.html" class="stretch"></iframe>
 				</section>
 				<section class="center">
 					<h2>Графики</h2>
 				</section>
-
+				
+				<!-- Этот слайд пишем на HTML для примера -->
 				<section>
 					<h3>Линейный график</h3>
 					<p>Линейный график показывает только цену на момент закрытия торгов.</p>
@@ -86,24 +110,29 @@ $$
 					<iframe data-src="html/candlestick.html" class="stretch"></iframe>
 				</section>
 
+				<!-- 3 типа добавления картинок на слайды -->
+				<!-- стандартный метод для картинок любого размера -->
 				<section>
 					<h3>Смешная картинка</h3>
 					<img src="img/standart.webp" alt="Ужин при свечах" height="400px">
 				</section>
+				<!-- Вставка вертикальных картинок на всю высоту -->
 				<section
-					data-background-image="img/vertical.jpg"
-					data-background-size="contain"
-					data-menu-title="На завод"
+				data-background-image="img/vertical.jpg"
+				data-background-size="contain"
+				data-menu-title="На завод"
 				></section>
+				<!-- Вставка изображения высокого разрешения на весь экран -->
 				<section
-					data-background-image="img/full.jpg"
-					data-menu-title="Мечты"
+				data-background-image="img/full.jpg"
+				data-menu-title="Мечты"
 				></section>
-
-				<section class="center" 	data-menu-title="Заключительный слайд">
+				
+				<!-- Не забываем про заключительный слайд -->
+				<section class="center" data-menu-title="Заключительный слайд">
 					<p>Спасибо за внимание!</p>
 				</section>
-
+				
 			</div>
 		</div>
 
@@ -116,25 +145,31 @@ $$
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
-				hash: true,
-				center: false,
+				hash: true, // Запоминание текущего слайда при перезагрузке
+				center: false, // Отменяем центрирование слайда
 				dependencies: [
+					// Подключим katex к странице
 					{
 						src: 'plugin/katex/katex.js',
 						async: true,
 					},
+					// Подключим меню к странице
 					{
 						src: 'plugin/menu/menu.js'
 					},
+					// Подключим плагин вставки внешних страниц
 					{
 						src: 'plugin/fullscreen/fullscreen.js'
 					}
 				],
+				// Минимальная настройка меню
 				menu: {
 					numbers: true,
 					markers: true,
 				},
+				// Добавим номер слайда
 				slideNumber: true,
+				// Добавим элементы управления презентацией
 				controls: true,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
