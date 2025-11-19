@@ -66,6 +66,17 @@
         td {
             padding: 5px;
         }
+
+        #wrapper {
+            font-size: 13px;
+        }
+        #wrapper table, #wrapper tr, #wrapper th, #wrapper td {
+            border: 1px black solid;
+            padding: 3px;
+        }
+        .vacation {
+            background-color: aquamarine;
+        }
     </style>
 </head>
 <body>
@@ -129,7 +140,7 @@
     <div>
         <label for="fio">Фамилия, имя, отчество</label><input type="text" id="fio" value="Мачтакова Антона Викторовича"></div>
     <div>
-        <label for="gender">Пол</label><input type="radio" name="gender" value="m" checked>М <input type="radio" name="gender" value="f" checked>Ж
+        <label for="gender">Пол</label><input type="radio" name="gender" value="m" checked>М <input type="radio" name="gender" value="f">Ж
     </div>
     <div>
         <label for="school">Школа</label><input type="text" id="school" value="Средней школы №12">
@@ -159,124 +170,126 @@
     </div>
     <div id="accountancy">
         <h2 class="even">Бухгалтерия</h2>
+        <div id="wrapper"></div>
     </div>
     <script>
         console.error('Hello world!');
     </script>
 
     <script>
-        let employees = [
-{
-    "surname": 'Иванов', //Фамилия
-    "name": 'Иван', //Имя
-    "patronymic": 'Иванович', //Отчество 
-    "birthday": '1987-11-30', //Дата рождения в формате ГГГГ-ММ-ДД
-    "experience": 5, //Стаж работы
-    "salary": 48200, //Зарплата гросс в месяц
-    "salary13": 3000, //Годовая премия
-    "gender": 'm', //Премия
-    "vacation": 0, //Месяц отпуска
-},
-{
-    "surname": 'Петров', 
-    "name": 'Петр', 
-    "patronymic": 'Петрович', 
-    "birthday": '2001-01-01',
-    "experience": 0,
-    "salary": 27600,
-    "salary13": 1000,
-    "gender": 'm',
-    "vacation": 8,
-},
-{
-    "surname": 'Капустина', 
-    "name": 'Ирина', 
-    "patronymic": 'Николаевна', 
-    "birthday": '1992-02-02',
-    "experience": 4,
-    "salary": 36000,
-    "salary13": 4000,
-    "gender": 'f',
-    "vacation": 3,
-},
-{
-    "surname": 'Билл', 
-    "name": 'Гейтс', 
-    "patronymic": '', 
-    "birthday": '1955-10-28',
-    "experience": 1,
-    "salary": 16900,
-    "salary13": 100,
-    "gender": 'm',
-    "vacation": 11,
-},
-{
-    "surname": 'Ложкина', 
-    "name": 'Галина', 
-    "patronymic": 'Ильинична', 
-    "birthday": '2002-01-13',
-    "experience": 1,
-    "salary": 80000,
-    "salary13": 100000,
-    "gender": 'f',
-    "vacation": 6,
-},
-{
-    "surname": 'Матрос', 
-    "name": 'Капитолия', 
-    "patronymic": 'Владовна', 
-    "birthday": '1975-04-20',
-    "experience": 20,
-    "salary": 90000,
-    "salary13": 4000,
-    "gender": 'f',
-    "vacation": 7,
-},
-{
-    "surname": 'Елисейская', 
-    "name": 'Италия', 
-    "patronymic": 'Франсовна', 
-    "birthday": '1999-08-12',
-    "experience": 3,
-    "salary": 36700,
-    "salary13": 4000,
-    "gender": 'f',
-    "vacation": 4,
-},
-{
-    "surname": 'Строгая', 
-    "name": 'Лада', 
-    "patronymic": '', 
-    "birthday": '1990-08-15',
-    "experience": 7,
-    "salary": 69000,
-    "salary13": 3600,
-    "gender": 'f',
-    "vacation": 9,
-},
-{
-    "surname": 'Император', 
-    "name": 'Павел', 
-    "patronymic": 'Григорьевич', 
-    "birthday": '1970-12-19',
-    "experience": 7,
-    "salary": 28999,
-    "salary13": 3900,
-    "gender": 'm',
-    "vacation": 1,
-},
-{
-    "surname": 'Ватрушкин', 
-    "name": 'Петр', 
-    "patronymic": 'Семенович', 
-    "birthday": '2000-05-13',
-    "experience": 1,
-    "salary": 200000,
-    "salary13": 0,
-    "gender": 'm',
-    "vacation": 5,
-},
-];
+    let employees = [
+        {
+            "surname": 'Иванов', //Фамилия
+            "name": 'Иван', //Имя
+            "patronymic": 'Иванович', //Отчество 
+            "birthday": '1987-11-30', //Дата рождения в формате ГГГГ-ММ-ДД
+            "experience": 5, //Стаж работы
+            "salary": 48200, //Зарплата гросс в месяц
+            "salary13": 3000, //Годовая премия
+            "gender": 'm', //Премия
+            "vacation": 0, //Месяц отпуска
+        },
+        {
+            "surname": 'Петров', 
+            "name": 'Петр', 
+            "patronymic": 'Петрович', 
+            "birthday": '2001-01-01',
+            "experience": 0,
+            "salary": 27600,
+            "salary13": 1000,
+            "gender": 'm',
+            "vacation": 8,
+        },
+        {
+            "surname": 'Капустина', 
+            "name": 'Ирина', 
+            "patronymic": 'Николаевна', 
+            "birthday": '1992-02-02',
+            "experience": 4,
+            "salary": 36000,
+            "salary13": 4000,
+            "gender": 'f',
+            "vacation": 3,
+        },
+        {
+            "surname": 'Билл', 
+            "name": 'Гейтс', 
+            "patronymic": '', 
+            "birthday": '1955-10-28',
+            "experience": 1,
+            "salary": 16900,
+            "salary13": 100,
+            "gender": 'm',
+            "vacation": 11,
+        },
+        {
+            "surname": 'Ложкина', 
+            "name": 'Галина', 
+            "patronymic": 'Ильинична', 
+            "birthday": '2002-01-13',
+            "experience": 1,
+            "salary": 80000,
+            "salary13": 100000,
+            "gender": 'f',
+            "vacation": 6,
+        },
+        {
+            "surname": 'Матрос', 
+            "name": 'Капитолия', 
+            "patronymic": 'Владовна', 
+            "birthday": '1975-04-20',
+            "experience": 20,
+            "salary": 90000,
+            "salary13": 4000,
+            "gender": 'f',
+            "vacation": 7,
+        },
+        {
+            "surname": 'Елисейская', 
+            "name": 'Италия', 
+            "patronymic": 'Франсовна', 
+            "birthday": '1999-08-12',
+            "experience": 3,
+            "salary": 36700,
+            "salary13": 4000,
+            "gender": 'f',
+            "vacation": 4,
+        },
+        {
+            "surname": 'Строгая', 
+            "name": 'Лада', 
+            "patronymic": '', 
+            "birthday": '1990-08-15',
+            "experience": 7,
+            "salary": 69000,
+            "salary13": 3600,
+            "gender": 'f',
+            "vacation": 9,
+        },
+        {
+            "surname": 'Император', 
+            "name": 'Павел', 
+            "patronymic": 'Григорьевич', 
+            "birthday": '1970-12-19',
+            "experience": 7,
+            "salary": 28999,
+            "salary13": 3900,
+            "gender": 'm',
+            "vacation": 1,
+        },
+        {
+            "surname": 'Ватрушкин', 
+            "name": 'Петр', 
+            "patronymic": 'Семенович', 
+            "birthday": '2000-05-13',
+            "experience": 1,
+            "salary": 200000,
+            "salary13": 0,
+            "gender": 'm',
+            "vacation": 5,
+        },
+    ];
+
     function calculateNetSalary(salary) {
         return +(salary*1.15*.87).toFixed(2);
     }
@@ -309,7 +322,7 @@
         const [year, month] = age;
         const months = gender === 'm' ? 64*12 : 59*12;
         const remainsMonth = months - year*12 + month;
-        if (remainsMonth < 0) return null;
+        if (remainsMonth < 0) return [null, null];
         if (remainsMonth %12 === 0) return [remainsMonth/12, 0];
         return [Math.floor(remainsMonth/12), 12 - remainsMonth % 12];
     }
@@ -318,31 +331,107 @@
         const tempDate = new Date(birthday);
         return `${tempDate.getDate()}.${months[tempDate.getMonth()][1]}.${tempDate.getFullYear()}`;
     }
-    const months = [
-        ['', 'января'],
-        ['', 'февраля'],
-        ['', 'марта'],
-        ['', 'апреля'],
-        ['', 'мая'],
-        ['', 'июня'],
-        ['', 'июля'],
-        ['', 'августа'],
-        ['', 'сентября'],
-        ['', 'октября'],
-        ['', 'ноября'],
-        ['', 'декабря'],
-    ];
-    for (let item of employees) {
-        const netSalary = calculateNetSalary(item.salary);
-        const yearSalary = calculateYearSalary(netSalary, item.salary13);
-        const taxReturn = calculateTaxReturn(yearSalary);
-        const newSalary = calculateNewSalary(item.salary);
-        const age = calculateAge(item.birthday);
-        const remains = remainsToPension(item.gender, age);
-        const formatOfBirthday = newFormatOfBirthday(item.birthday, months);
-        console.log(item.surname, netSalary, yearSalary, taxReturn, newSalary, age, remains, formatOfBirthday);
+
+    function ageCase (age) {
+        if (age%10 === 1 && age%100 !== 11) {
+            return 'год';
+        }
+        if (
+            (age%10 === 2 || age%10 === 3 || age%10 === 4) && 
+            age%100 !== 12 && age%100 !== 13 && age%100 !== 14
+        ) {
+            return 'года';
+        }
+        return 'лет';
     }
 
+    const months = [
+        ['Январь', 'января'],
+        ['Февраль', 'февраля'],
+        ['Март', 'марта'],
+        ['Апрель', 'апреля'],
+        ['Май', 'мая'],
+        ['Июнь', 'июня'],
+        ['Июль', 'июля'],
+        ['Август', 'августа'],
+        ['Сентябрь', 'сентября'],
+        ['Октябрь', 'октября'],
+        ['Ноябрь', 'ноября'],
+        ['Декабрь', 'декабря'],
+    ];
+
+    let table = `<table><thead>
+        <tr>
+            <th>№</th>     
+            <th>ФИО</th>     
+            <th>Дата рождения</th>     
+            <th>Возраст</th>     
+            <th>Зарплата гросс.</th>     
+    `;
+    for (let i = 0; i < 12; i++) {
+        table += `<th>${months[i][0]}</th>`;
+    }
+    table += `<th>Зарплата в ${new Date().getFullYear()+1}</th>
+        <th>Общий доход</th>
+        <th>К вычету</th>
+        <th>Ост. до пенсии</th>
+    </tr>
+    </thead>
+    <tbody>`;
+    const rub = "&#x20bd";
+    for (let i in employees) {
+        item = employees[i];
+        [ageYear, ageMonth] = calculateAge(item.birthday);
+        [rtpYear, rtpMonth] = remainsToPension(item.gender, [ageYear, ageMonth]);
+        console.log(rtpYear, rtpMonth);
+        table += `<tr>
+            <td>${+i+1}</td>
+            <td>${item.surname} ${item.name} ${item.patronymic}</td>
+            <td>${newFormatOfBirthday(item.birthday, months)}</td>
+            <td>${ageYear}${ageCase(ageYear)}</td>
+            <td>${item.salary}${rub}</td>`;
+        let ys = calculateYearSalary(item.salary, item.salary13);
+        for (let j = 0; j < 11; j++) {
+            table += `<td ${j===item.vacation ? 'class="vacation"' : ''}>${calculateNetSalary(item.salary)}${rub}</td>`;
+        }
+        table += `<td ${11===item.vacation ? 'class="vacation"' : ''}>${calculateNetSalary(item.salary)+calculateNetSalary(item.salary13)}${rub}</td>
+        <td>${calculateNewSalary(item.salary)}${rub}</td>
+        <td>${ys}${rub}</td>
+        <td>${calculateTaxReturn(ys)}${rub}</td>
+        <td>${rtpYear !== null ? (rtpYear + ageCase(rtpYear)) : "Уже на пенсии"}</td>
+        `;
+        table += `</tr>`;
+    }
+    table += `</tbody></table>`;
+    window.onload = () => {
+        document.querySelector("#wrapper").innerHTML = table;
+
+        document.querySelector("#create").onclick = (e) => {
+            e.preventDefault();
+            let newWin = window.open("about:blank", "Дневник", "width=420,height=594");
+            let template = `
+            <style>
+                body {
+                    margin-top: 100px;
+                    text-align: center;
+                    font-size: large;
+                    background-color: ${document.querySelector('#color').value}
+                }
+                .contact {
+                    margin-top: 50px;
+                }
+            </style>
+            <h1>Дневник</h1>
+            <div>Учени${document.querySelector('[name="gender"]:checked').value == "m" ? "ка" : "цы"} ${document.querySelector("#class").value} класса</div>
+            <div>${document.querySelector("#school").value} ${document.querySelector("#locality").value}</div>
+            <div>${document.querySelector("#fio").value}</div>
+            <div>${document.querySelector("#year").value}/${+document.querySelector("#year").value+1} учебного года</div>
+            <div class='contact'>${document.querySelector("#email").value}, ${document.querySelector("#phone").value}</div>
+            `;
+            newWin.document.write(template);
+        }
+
+    }
     </script>
 
 
