@@ -37,6 +37,9 @@
             border-collapse: collapse;
             padding-left: 10px;
         }
+        .vacation {
+            background-color: aquamarine;
+        }
     </style>
 </head>
 <body>
@@ -148,7 +151,7 @@
     </div>
     <div class="even">
         <h2 id="accountancy">Бухгалтерия</h2>
-
+        <div id="wrapper"></div>
     </div>
 
     <script>
@@ -281,6 +284,10 @@
         return +(this.salary*1.15*.87).toFixed(2);
     }
 
+    Employee.prototype.calculateNetSalary13 = function () {
+        return +(this.salary13*1.15*.87).toFixed(2);
+    }
+
     Employee.prototype.calculateYearSalary = function() {
         return +(this.calculateNetSalary() * 12).toFixed(2);
     }
@@ -324,19 +331,52 @@
         return `${tempDate.getDate()}.${months[tempDate.getMonth()][1]}.${tempDate.getUTCFullYear()}`;
     }
 
+    Employee.prototype.getAgeString = function () {
+        const [ageYear] = this.calculateAge();
+        if (ageYear % 10 === 1 && ageYear % 100 !== 11) {
+            return ageYear + " год";
+        }
+        if (
+            (ageYear % 10 === 2 || ageYear % 10 === 3 || ageYear % 10 === 4) && ageYear % 100 !== 12 && ageYear % 100 !== 13 && ageYear % 100 !== 14 
+            ) {
+                return ageYear + " годa";
+        }
+        return ageYear + " лет";
+    }
+
+    Employee.prototype.getPensionString = function () {
+        const [rtpYear, rtpMonth] = this.remainsToPension();
+        if (rtpYear === null) return "Уже на пенсии";
+        if (rtpYear === 0) return `${rtpMonth} месяцев`;
+        let yearStr;
+        if (rtpYear % 10 === 1 && rtpYear % 100 !== 11) {
+            yearStr = rtpYear + " год";
+        } else if (
+            (rtpYear % 10 === 2 || rtpYear % 10 === 3 || rtpYear % 10 === 4) && rtpYear % 100 !== 12 && rtpYear % 100 !== 13 && rtpYear % 100 !== 14 
+        ) {
+            yearStr = rtpYear + " годa";
+        } else {
+            yearStr = rtpYear + " лет";
+        }
+        if (rtpMonth === 0) return yearStr;
+        return `${yearStr} ${rtpMonth} месяцев`;
+    }
+
+
+
     const months = [
-        ['', 'января'],
-        ['', 'февраля'],
-        ['', 'марта'],
-        ['', 'апреля'],
-        ['', 'мая'],
-        ['', 'июня'],
-        ['', 'июля'],
-        ['', 'августа'],
-        ['', 'сентября'],
-        ['', 'октября'],
-        ['', 'ноября'],
-        ['', 'декабря'],
+        ['Январь', 'января'],
+        ['Февраль', 'февраля'],
+        ['Март', 'марта'],
+        ['Апрель', 'апреля'],
+        ['Май', 'мая'],
+        ['Июнь', 'июня'],
+        ['Июль', 'июля'],
+        ['Август', 'августа'],
+        ['Сентябрь', 'сентября'],
+        ['Октябрь', 'октября'],
+        ['Ноябрь', 'ноября'],
+        ['Декабрь', 'декабря'],
     ];
 
 
@@ -352,6 +392,50 @@
         console.log(employee, netSalary, yearSalary, taxReturn, newSalary, remains, formatOfBirthday);
     }
 
+    let table = `<table><thead>
+        <tr>
+            <td>№</td>
+            <td>ФИО</td>
+            <td>Дата рождения</td>
+            <td>Возраст</td>
+            <td>Зарплата гросс.</td>
+        `;
+        for (let i = 0; i < 12; i++) {
+            table += `<td>${months[i][0]}</td>`;
+        }
+        table += `
+            <td>Зарплата в ${new Date().getFullYear() + 1}</td>
+            <td>Общий доход</td>
+            <td>К вычету</td>
+            <td>Ост. до пенсии</td>
+        </tr></thead><tbody>
+        `;
+        const rub = "&#x20bd";
+        for (let i = 0; i < employees.length; i++) {
+            const employee = new Employee(employees[i]);
+
+            table += `<tr>
+                <td>${i+1}</td>
+                <td>${employee.surname} ${employee.name} ${employee.patronymic}</td>
+                <td>${employee.formatBirthDay(months)}</td>
+                <td>${employee.getAgeString()}</td>
+                <td>${employee.salary}${rub}</td>`;
+                for (let j = 0; j < 11; j++) {
+                    table += `<td ${j === employee.vacation ? 'class="vacation"' : ""}>${employee.calculateNetSalary()}${rub}</td>`;
+                }
+            table += `<td ${11 === employee.vacation ? 'class="vacation"' : ""}>${(employee.calculateNetSalary() + employee.calculateNetSalary13())}${rub}</td>
+            <td>${employee.calculateNewSalary()}${rub}</td>
+            <td>${employee.calculateYearSalary()}${rub}</td>
+            <td>${employee.calculateTaxReturn()}${rub}</td>
+            <td>${employee.getPensionString()}</td>
+            
+            </tr>`;
+        }
+
+        table += `</tbody></table>`;
+        window.onload = () => {
+            document.querySelector('#wrapper').innerHTML = table;
+        }
 
     </script>
 
