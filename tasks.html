@@ -433,8 +433,33 @@
         }
 
         table += `</tbody></table>`;
+
+        function generateDiary (e) {
+            e.preventDefault();
+            let newWin = window.open("about:blank", "Дневник", "width=420,height=594");
+            let template = `
+            <style>
+                body {
+                    margin-top: 100px;
+                    text-align: center;
+                    font-size: large;
+                    background-color: ${document.querySelector('#color').value};
+                }
+            </style>
+            <h1>Дневник</h1>
+            <div>Учени${document.querySelector('[name=gender]:checked').value == "m" ? 'ка' : 'цы'} ${document.querySelector('#class').value} класса</div>
+            <div>${document.querySelector('#school').value} ${document.querySelector('#locality').value}</div>
+            <div>${document.querySelector('#fio').value}</div>
+            <div>${document.querySelector('#year').value}/${+document.querySelector('#year').value + 1} учебного года</div>
+            `;
+
+            newWin.document.write(template);
+        }
+
+
         window.onload = () => {
             document.querySelector('#wrapper').innerHTML = table;
+            document.querySelector('#create').onclick = generateDiary;
         }
 
     </script>
